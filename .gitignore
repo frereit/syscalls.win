@@ -1,0 +1,7 @@
+.venv
+__pycache__
+_tmp_*
+*.db
+syscalls.sock
+dlls.db
+dlls

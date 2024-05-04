@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table id="data" class="table table-striped">
+  <thead>
+    <tr>
+      {% for title in titles %}
+      <th>{{ title|safe }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for field in fields %}
+    <tr>
+      {% for val in field %}
+      <td>{{ val|safe }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+{% block scripts %}
+<script src="//code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+<script src="//cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    var table = $('#data').DataTable();
+    var queryDict = {}
+    location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+    if (queryDict.q) {
+      table.search(queryDict.q).draw()
+    }
+  });
+</script>
+{% endblock %}

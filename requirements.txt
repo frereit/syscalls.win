@@ -1,0 +1,4 @@
+pefile
+requests
+flask
+pandas
